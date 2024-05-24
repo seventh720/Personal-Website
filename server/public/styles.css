@@ -1,0 +1,168 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: black;
+    transition: background-color 1s, color 1s;
+}
+
+header, footer {
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav {
+    background-color: #005f99;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 1rem;
+    display: block;
+}
+
+nav ul li a:hover {
+    background-color: #007bb5;
+}
+
+main {
+    padding: 2rem;
+    text-align: center;
+    display: none;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.light-mode {
+    background-color: #f0f8ff;
+    color: black;
+}
+
+.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+.dark-mode header,
+.dark-mode footer {
+    background: linear-gradient(90deg, #005f99 0%, #007bb5 100%);
+}
+
+.dark-mode nav ul li a {
+    color: white;
+}
+
+.dark-mode nav ul li a:hover {
+    background-color: #0099e6;
+}
+
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('img/cloud.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
+    transition: opacity 1.5s ease-in-out, background-image 1s linear;
+}
+
+
+.intro-overlay h1 {
+    font-size: 3rem;
+    margin: 0;
+    color: white;
+}
+
+.intro-overlay button {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background-color: #005f99;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 1s;
+}
+
+.intro-overlay button:hover {
+    background-color: #007bb5;
+}
+
+.overlay-dark-mode .intro-overlay {
+    background-color: #121212;
+    color: white;
+    background-image: url('img/sky.jpg');
+}
+
+.overlay-dark-mode .intro-overlay button {
+    background-color: #007bb5;
+    color: white;
+}
+
+.overlay-dark-mode .intro-overlay button:hover {
+    background-color: #0099e6;
+}
+
+#overlay-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+#overlay-toggle img {
+    width: 30px;
+    height: 30px;
+}
+
+#mode-toggle{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+#mode-toggle img {
+    width: 30px;
+    height: 30px;
+}
+
+#home-page, #about-page, #quiz-page {
+    opacity: 0; /* 初始状态隐藏页面 */
+    transition: opacity 0.5s ease-in-out; /* 过渡效果 */
+}

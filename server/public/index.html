@@ -1,1 +1,97 @@
-Hello from the test web server
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Introduction Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-mode">
+    <div class="intro-overlay">
+        <h1>Victor</h1>
+        <button id="enter-site">Click to Enter</button>
+        <button id="overlay-toggle">
+            <img src="img/light.png" alt="Toggle Light/Dark Mode">
+        </button>
+    </div>
+    <header>
+        <h1>Welcome to My Introduction Page</h1>
+        <button id="mode-toggle">
+            <img src="img/light.png" alt="Toggle Light/Dark Mode">
+        </button>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h2>About Me</h2>
+            <p>Hello! My name is Victor. I am a student at [Your University], studying [Your Major].</p>
+            <p>I have a passion for [Your Interests]. In my free time, I enjoy [Your Hobbies].</p>
+            <p>Welcome to my website where you can learn more about me and take a fun quiz!</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Victor. All rights reserved.</p>
+    </footer>
+
+    <script>
+    document.getElementById('enter-site').addEventListener('click', function() {
+            document.querySelector('.intro-overlay').style.opacity = '0';
+            setTimeout(function() {
+                document.querySelector('.intro-overlay').style.display = 'none';
+                document.querySelector('header').style.display = 'flex';
+                document.querySelector('nav').style.display = 'block';
+                document.querySelector('main').style.display = 'block';
+                document.querySelector('footer').style.display = 'block';
+                setTimeout(function() {
+                    document.querySelector('header').style.opacity = '1';
+                    document.querySelector('nav').style.opacity = '1';
+                    document.querySelector('main').style.opacity = '1';
+                    document.querySelector('footer').style.opacity = '1';
+                }, 50);
+            }, 1000);
+        });
+
+    document.getElementById('overlay-toggle').addEventListener('click', function() {
+        var body = document.body;
+        body.classList.toggle('dark-mode');
+        body.classList.toggle('light-mode');
+    });
+    
+    document.getElementById('overlay-toggle').addEventListener('click', function() {
+        var body = document.body;
+        body.classList.toggle('overlay-dark-mode'); 
+    });
+
+    document.getElementById('mode-toggle').addEventListener('click', function() {
+        var body = document.body;
+        body.classList.toggle('dark-mode');
+        body.classList.toggle('light-mode');
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var links = document.querySelectorAll('nav ul li a');
+
+        links.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); 
+
+                var targetPage = link.getAttribute('href'); 
+
+                document.querySelector('main').style.opacity = '0';
+
+                setTimeout(function() {
+                    window.location.href = targetPage;
+                }, 500);
+            });
+        });
+    }); 
+    </script>
+
+</body>
+</html>
