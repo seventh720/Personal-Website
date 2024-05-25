@@ -2,32 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Introduction Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+    <link rel="stylesheet" href="quizstyles.css">
 </head>
-<body class="light-mode"></body>
+<body class="light-mode">
     <header>
-        <h1>Welcome to My Introduction Page</h1>
-        <button id="mode-toggle">
-            <img src="img/light.png" alt="Toggle Light/Dark Mode">
-        </button>
+        <div class="header-left">
+            <div class="avatar">
+                <img src="img/logo.jpg" alt="Avatar">
+            </div>
+            <h1>Quiz</h1>
+        </div>
+        <div class="header-buttons">
+            <nav class="nav-bar">
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="quiz.html"class="active">Quiz</a></li>
+                </ul>
+            </nav>
+            <button id="mode-toggle">
+                <img src="img/light.png" alt="Toggle Light/Dark Mode">
+            </button>
+        </div>
     </header>
-    <div class="nav-container">
-        <a href="home.html" class="nav-block" data-description="这是主页。">主页</a>
-        <a href="about.html" class="nav-block" data-description="在这里了解更多关于我的信息。">关于</a>
-        <a href="quiz.html" class="nav-block" data-description="在这里参加一个有趣的测验。">测验</a>
-    </div>
     <main>
-        <section>
-            <h2>About Me</h2>
-            <p>Hello! My name is Victor. I am a student at [Your University], studying [Your Major].</p>
-            <p>I have a passion for [Your Interests]. In my free time, I enjoy [Your Hobbies].</p>
-            <p>Welcome to my website where you can learn more about me and take a fun quiz!</p>
-        </section>
     </main>
     <footer>
         <p>&copy; 2024 Victor. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var links = document.querySelectorAll('.nav-bar a');
+            links.forEach(function(link) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var targetPage = link.getAttribute('href');
+                    document.querySelector('main').style.opacity = '0';
+                    setTimeout(function() {
+                        window.location.href = targetPage;
+                    }, 500);
+                });
+            });
+            // Initial fade-in effect
+            document.querySelector('main').style.opacity = '1';
+        });
+
+        document.getElementById('mode-toggle').addEventListener('click', function() {
+            var body = document.body;
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+        });
+    </script>
 </body>
 </html>
