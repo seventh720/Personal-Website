@@ -62,9 +62,9 @@ const quizData = [
         answer: 0
     },
     {
-        question: 'Who wrote the novel "1984"?',
-        options: ['George Orwell', 'Aldous Huxley', 'J.D. Salinger', 'F. Scott Fitzgerald'],
-        answer: 0
+        question: 'Who wrote the novel "Harry Potter"?',
+        options: ['George Orwell', 'Aldous Huxley', 'J.k. Rowling', 'F. Scott Fitzgerald'],
+        answer: 2
     },
     {
         question: 'Brain Teaser: What has keys but can not open locks?',
@@ -73,19 +73,21 @@ const quizData = [
     },
 ];
 
-    let currentQuestionIndex = 0;
-    let score = 0;
-    let timer;
-    let startTime; 
+let currentQuestionIndex = 0;
+let score = 0;
+let timer;
+let startTime; 
+let isProcessingOption = false;
     
-    const timeLimit = 15;
-    const startQuizBtn = document.getElementById('start-quiz');
-    const questionEl = document.getElementById('question');
-    const optionsContainerEl = document.getElementById('options-container');
-    const timerEl = document.getElementById('timer');
-    const resultEl = document.getElementById('result');
-    const questionIndicatorEl = document.getElementById('question-indicator');
-    const nameInput = document.getElementById('name-input');
+const timeLimit = 15;
+const startQuizBtn = document.getElementById('start-quiz');
+const questionEl = document.getElementById('question');
+const optionsContainerEl = document.getElementById('options-container');
+const timerEl = document.getElementById('timer');
+const resultEl = document.getElementById('result');
+const questionIndicatorEl = document.getElementById('question-indicator');
+const nameInput = document.getElementById('name-input');
+
 
 function init() {
     displayQuestion();
@@ -94,6 +96,7 @@ function init() {
 }
     
 function displayQuestion() {
+    clearInterval(timer);
     const currentQuestion = quizData[currentQuestionIndex];
     questionEl.textContent = currentQuestion.question;
     questionIndicatorEl.textContent = `Question ${currentQuestionIndex + 1}/${quizData.length}`;
@@ -109,6 +112,9 @@ function displayQuestion() {
 }
 
 function selectOption(event) {
+    if (isProcessingOption) return;
+    isProcessingOption = true;
+
     const selectedOption = event.target;
     const selectedValue = selectedOption.dataset.value;
     const currentQuestion = quizData[currentQuestionIndex];
@@ -117,8 +123,10 @@ function selectOption(event) {
     if (selectedValue == currentQuestion.answer) {
         score++;
         selectedOption.classList.add('correct');
+        timerEl.textContent = 'Correct!';
     } else {
         selectedOption.classList.add('incorrect');
+        timerEl.textContent = 'Incorrect!';
         const correctOption = optionsContainerEl.querySelectorAll('.option')[currentQuestion.answer];
         correctOption.classList.add('correct');
     }
@@ -127,6 +135,7 @@ function selectOption(event) {
 
 
 function nextQuestion() {
+    isProcessingOption = false;
     currentQuestionIndex++;
     if (currentQuestionIndex < quizData.length) {
             resetOptions();
@@ -152,6 +161,7 @@ function startTimer() {
         timerEl.textContent = `Time: ${timeLeft}s`;
         if (timeLeft === 0) {
             clearInterval(timer);
+            timerEl.textContent = 'Times up!';
             const currentQuestion = quizData[currentQuestionIndex];
             const correctOption = optionsContainerEl.querySelectorAll('.option')[currentQuestion.answer];
             correctOption.classList.add('correct');
@@ -172,7 +182,13 @@ function endQuiz() {
   }
   
   startQuizBtn.addEventListener('click', function() {
+    const userName = nameInput.value.trim();
+    if (userName === '') {
+        alert('Please enter your name to start the quiz.');
+        return;
+      }
+      else{
     init();
     startQuizBtn.classList.add('hide');
-    nameInput.classList.add('hide');
+    nameInput.classList.add('hide');}
   });

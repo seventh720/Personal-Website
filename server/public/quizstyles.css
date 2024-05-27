@@ -131,10 +131,7 @@ footer {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.21);
   padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 100px;
-  margin-left: 100px;
-  margin-right: 100px;
+  margin: 10px 100px 100px 100px;
   max-width: 1800px; 
   max-height: 1500px; 
   overflow: auto; 
@@ -259,6 +256,7 @@ footer {
   }
 
 #timer-container {
+  margin-top: 25px;
   margin-bottom: 25px;
   text-align: center;
 }
