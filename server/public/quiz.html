@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Page</title>
+    <title>Quiz Page</title>
     <link rel="stylesheet" href="quizstyles.css">
 </head>
 <body class="light-mode">
@@ -19,7 +19,7 @@
                 <ul>
                     <li><a href="home.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="quiz.html"class="active">Quiz</a></li>
+                    <li><a href="quiz.html" class="active">Quiz</a></li>
                 </ul>
             </nav>
             <button id="mode-toggle">
@@ -28,33 +28,27 @@
         </div>
     </header>
     <main>
+        <div class="quiz-container">
+            <div id="start-container">
+                <input type="text" id="name-input" placeholder="Enter your name">
+                <button id="start-quiz">Start Quiz</button>
+            </div>
+            <div id="question-container" class="hide">
+                <div id="question-indicator"></div>
+                <div id="question"></div>
+                <div id="options-container"></div>
+            </div>
+            <div id="timer-container" class="hide">
+                <div id="timer"></div>
+            </div>
+            <div id="result-container" class="hide">
+                <div id="result"></div>
+            </div>
+        </div>
     </main>
     <footer>
         <p>&copy; 2024 Victor. All rights reserved.</p>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var links = document.querySelectorAll('.nav-bar a');
-            links.forEach(function(link) {
-                link.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    var targetPage = link.getAttribute('href');
-                    document.querySelector('main').style.opacity = '0';
-                    setTimeout(function() {
-                        window.location.href = targetPage;
-                    }, 500);
-                });
-            });
-            // Initial fade-in effect
-            document.querySelector('main').style.opacity = '1';
-        });
-
-        document.getElementById('mode-toggle').addEventListener('click', function() {
-            var body = document.body;
-            body.classList.toggle('dark-mode');
-            body.classList.toggle('light-mode');
-        });
-    </script>
+    <script src="quiz.js"></script>
 </body>
 </html>
