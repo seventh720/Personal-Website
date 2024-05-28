@@ -33,6 +33,7 @@
                 <input type="text" id="name-input" placeholder="Enter your name">
                 <button id="start-quiz">Start Quiz</button>
             </div>
+                <button id="end-quiz" class="hide">Try Again?</button>
             <div id="question-container" class="hide">
                 <div id="question-indicator"></div>
                 <div id="question"></div>
@@ -44,6 +45,21 @@
             <div id="result-container" class="hide">
                 <div id="result"></div>
             </div>
+            <div id="leaderboard-container">
+                <h1>Leaderboard</h1>
+                <table id="leaderboard-table">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Name</th>
+                      <th>Correct Answers</th>
+                      <th>Time Taken</th>
+                    </tr>
+                  </thead>
+                  <tbody id="leaderboard-body">
+                  </tbody>
+                </table>
+              </div>
         </div>
     </main>
     <footer>

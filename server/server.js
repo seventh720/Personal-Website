@@ -1,95 +1,68 @@
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
+const port = process.env.PORT || 8080;
 
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-})); 
+const quizDataPath = path.join(__dirname, 'data', 'quiz-data.json');
+const leaderboardPath = path.join(__dirname,'data', 'leaderboard.json');
 
-app.use(express.static('public'))
+let quizData = [];
+try {
+  const data = fs.readFileSync(quizDataPath);
+  quizData = JSON.parse(data);
+} catch (error) {
+  console.error('初始化答题数据失败，将使用空数组开始', error);
+}
 
+// 读取初始排行榜数据
+let leaderboardData = [];
+try {
+  const data = fs.readFileSync(leaderboardPath);
+  leaderboardData = JSON.parse(data);
+  leaderboardData.sort((a, b) => b.score - a.score || a.timeTaken - b.timeTaken);
+} catch (error) {
+  console.error('初始化排行榜数据失败，将使用空数组开始', error);
+}
 
-// index page
-app.get('/testGet', function(req, res) {	
-  let firstName = req.query.firstName
-  let surname = req.query.surname
-  
-  res.send(`
-           <!doctype html>
-           <head>
-           <title>Test GET</title> 
-           </head>
-           <body>
-<strong> First Name:</strong>${firstName} <br>
-<strong> Surname:</strong>${surname}
-           </body> 
-           `);
+// 中间件
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
+// POST路由来提交测验数据
+app.post('/submit-quiz-data', (req, res) => {
+  const { rank, name, score, timeTaken } = req.body;
+  const newEntry = {rank, name, score, timeTaken };
+
+  // 添加新的成绩到答题数据
+  quizData.push(newEntry);
+
+  // 写入更新后的答题数据到 JSON 文件
+  fs.writeFileSync(quizDataPath, JSON.stringify(quizData, null, 2));
+
+  // 添加新的成绩到排行榜数据
+  leaderboardData.push(newEntry);
+
+  // 根据分数和时间排序
+  leaderboardData.sort((a, b) => b.score - a.score || a.timeTaken - b.timeTaken);
+
+  leaderboardData.forEach((entry, index) => {
+    entry.rank = index + 1;
+  });
+
+  // 写入更新后的排行榜数据到 JSON 文件
+  fs.writeFileSync(leaderboardPath, JSON.stringify(leaderboardData, null, 2));
+
+  res.json({ message: 'Results submitted successfully', leaderboard: leaderboardData });
 });
 
+  app.get('/get-leaderboard', (req, res) => {
+    res.json(leaderboardData);
+  });
 
-app.post('/testPost', function(req, res) {
-	let firstName = req.body.firstName
-    let surname = req.body.surname
-
-res.send(`
-           <!doctype html>
-           <head>
-           <title>Test POST</title> 
-           </head>
-           <body>
-<strong> First Name:</strong>${firstName} <br>
-<strong> Surname:</strong>${surname}
-           </body> 
-           `)
-  
+app.listen(port, () => {
+  console.log(`Server is listening on port http://localhost:${port}`);
 });
-
-
-app.get('/test404', function(req, res) {
-    
-    res.status(404);
-    res.send ('Not Found')
-});
-
-app.get('/test403', function(req, res) {
-     res.status(403);
-    res.send ('Forbidden')
-});
-
-app.get('/test500', function(req, res) {
-    //something that breaks
-    let b = z
-    
-});
-
-app.post('/practical5', function(req, res) {
-	let name = req.body.firstName
-    let email = req.body.surname
-    let gender = req.body.gender
-    let genre = req.body.genre
-    let username = req.body.username
-    let message = req.body.message
-
-res.send(`
-           <!doctype html>
-           <head>
-           <title>Test POST</title> 
-           </head>
-           <body>
-<strong> Name:</strong>${name} <br>
-<strong> Email:</strong>${email}<br>
-<strong> Gender:</strong>${gender}<br>
-<strong> Genre:</strong>${genre}<br>
-<strong> Message:</strong>${message}<br>
-<strong> User Name:</strong>${username}
-           </body> 
-           `)
-  
-});
-
-
-app.listen(8080);
-console.log('Server is listening on port 8080');
-

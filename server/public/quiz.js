@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
+    fetch('/get-leaderboard')
+    .then(response => response.json())
+    .then(data => {
+      renderLeaderboard(data);
+    })
+    .catch(error => {
+      console.error('Error fetching leaderboard data:', error);
+    });
+
     var links = document.querySelectorAll('.nav-bar a');
     links.forEach(function(link) {
         link.addEventListener('click', function(event) {
@@ -87,7 +96,8 @@ const timerEl = document.getElementById('timer');
 const resultEl = document.getElementById('result');
 const questionIndicatorEl = document.getElementById('question-indicator');
 const nameInput = document.getElementById('name-input');
-
+const leaderboardContainerEl = document.getElementById('leaderboard-container');
+const endQuizBtn = document.getElementById('end-quiz');
 
 function init() {
     displayQuestion();
@@ -170,25 +180,102 @@ function startTimer() {
     }, 1000);
 }
 
-function endQuiz() {
+function renderLeaderboard(leaderboardData) {
+    const leaderboardBody = document.getElementById('leaderboard-body');
+    leaderboardBody.innerHTML = ''; // 清空现有排行榜数据
+  
+    leaderboardData.forEach(entry => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${entry.rank}</td>
+        <td>${entry.name}</td>
+        <td>${entry.score}</td>
+        <td>${entry.timeTaken}</td>
+      `;
+      leaderboardBody.appendChild(row);
+    });
+  }
+  
+  async function submitResults() {
+    try {
+      const response = await fetch('/submit-quiz-data', {
+        // ...请求配置...
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      console.log('Results submitted successfully');
+      renderLeaderboard(data.leaderboard); 
+    } catch (error) {
+      console.error('Error submitting results:', error);
+    }
+  }
+
+  function endQuiz() {
     questionEl.textContent = '';
     optionsContainerEl.innerHTML = '';
     timerEl.textContent = '';
     questionIndicatorEl.classList.add('hide');
-    const endTime = new Date().getTime(); 
-    const totalTime = (endTime - startTime) / 1000; 
+    endQuizBtn.classList.remove('hide');
+    const endTime = new Date().getTime();
+    const totalTime = (endTime - startTime) / 1000;
     const userName = nameInput.value || 'Anonymous';
-    resultEl.textContent = `Quiz accomplished! ${userName}, your final score is: ${score} / ${quizData.length}. Total time: ${totalTime} seconds.`; // 显示分数和总用时
+    const userData = {
+      rank: 0,
+      name: userName,
+      score,
+      timeTaken: totalTime
+    };
+  
+    fetch('/submit-quiz-data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    })
+    .then(response => {
+      if (response.ok) {
+        resultEl.textContent = `Quiz accomplished! ${userName}, your final score is: ${score}. Total time: ${totalTime} seconds.`;
+        return response.json();
+      } else {
+        throw new Error('Network response was not ok');
+      }
+    })
+    .then(data => {
+      renderLeaderboard(data.leaderboard);
+      leaderboardContainerEl.classList.remove('hide'); 
+    })
+    
+    .catch(error => {
+      console.error('Error submitting quiz data:', error);
+    });
   }
   
-  startQuizBtn.addEventListener('click', function() {
+startQuizBtn.addEventListener('click', function() {
     const userName = nameInput.value.trim();
     if (userName === '') {
         alert('Please enter your name to start the quiz.');
         return;
       }
-      else{
+      else{ fetch('/get-leaderboard')
+        .then(response => response.json())
+        .then(data => {
+          renderLeaderboard(data);
     init();
     startQuizBtn.classList.add('hide');
-    nameInput.classList.add('hide');}
-  });
+    nameInput.classList.add('hide');
+    leaderboardContainerEl.classList.add('hide');})
+        }
+    }
+  );
+
+endQuizBtn.addEventListener('click',function(){
+    endQuizBtn.classList.add('hide');
+    resultEl.classList.add('hide');
+    startQuizBtn.classList.remove('hide');
+    nameInput.classList.remove('hide');
+})
