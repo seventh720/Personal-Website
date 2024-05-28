@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "name": "12",
+    "score": 5,
+    "timeTaken": 13.789,
+    "rank": 1
+  },
+  {
+    "name": "1247",
+    "score": 3,
+    "timeTaken": 13.812,
+    "rank": 2
+  },
+  {
+    "name": "123",
+    "score": 2,
+    "timeTaken": 98.974,
+    "rank": 3
+  },
+  {
+    "name": "124",
+    "score": 1,
+    "timeTaken": 148.733,
+    "rank": 4
+  }
+]

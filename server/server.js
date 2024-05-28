@@ -2,12 +2,17 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
+const http = require('http');
+const socketIo = require('socket.io');
 
 const app = express();
+const server = http.createServer(app);
+const io = socketIo(server);
+
 const port = process.env.PORT || 8080;
 
 const quizDataPath = path.join(__dirname, 'data', 'quiz-data.json');
-const leaderboardPath = path.join(__dirname,'data', 'leaderboard.json');
+const leaderboardPath = path.join(__dirname, 'data', 'leaderboard.json');
 
 let quizData = [];
 try {
@@ -32,37 +37,36 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-// POST路由来提交测验数据
-app.post('/submit-quiz-data', (req, res) => {
-  const { rank, name, score, timeTaken } = req.body;
-  const newEntry = {rank, name, score, timeTaken };
+io.on('connection', (socket) => {
+    console.log('New client connected');
 
-  // 添加新的成绩到答题数据
-  quizData.push(newEntry);
+    socket.on('get-leaderboard', () => {
+        socket.emit('leaderboard-data', leaderboardData);
+    });
 
-  // 写入更新后的答题数据到 JSON 文件
-  fs.writeFileSync(quizDataPath, JSON.stringify(quizData, null, 2));
+    socket.on('submit-quiz-data', (data) => {
+        const { name, score, timeTaken } = data;
+        const newEntry = { name, score, timeTaken };
+        
+        leaderboardData.push(newEntry);
+        leaderboardData.sort((a, b) => b.score - a.score || a.timeTaken - b.timeTaken);
+        leaderboardData.forEach((entry, index) => {
+            entry.rank = index + 1;
+        });
 
-  // 添加新的成绩到排行榜数据
-  leaderboardData.push(newEntry);
+        fs.writeFileSync(leaderboardPath, JSON.stringify(leaderboardData, null, 2));
+        io.emit('leaderboard-data', leaderboardData);
+    });
 
-  // 根据分数和时间排序
-  leaderboardData.sort((a, b) => b.score - a.score || a.timeTaken - b.timeTaken);
-
-  leaderboardData.forEach((entry, index) => {
-    entry.rank = index + 1;
-  });
-
-  // 写入更新后的排行榜数据到 JSON 文件
-  fs.writeFileSync(leaderboardPath, JSON.stringify(leaderboardData, null, 2));
-
-  res.json({ message: 'Results submitted successfully', leaderboard: leaderboardData });
+    socket.on('disconnect', () => {
+        console.log('Client disconnected');
+    });
 });
 
-  app.get('/get-leaderboard', (req, res) => {
-    res.json(leaderboardData);
-  });
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'home.html'));
+});
 
-app.listen(port, () => {
-  console.log(`Server is listening on port http://localhost:${port}`);
+server.listen(port, () => {
+  console.log(`Server is listening on http://localhost:${port}`);
 });
