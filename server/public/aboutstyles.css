@@ -1,5 +1,5 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Georgia', sans-serif;
     margin: 0;
     padding: 0;
     background: linear-gradient(90deg, #f0f8ff 0%, #e6e6fa 100%);
@@ -103,7 +103,13 @@ main {
 
 section {
     width: 30%;
-    margin-bottom: 2rem;
+    margin-bottom: 100px;
+}
+
+section p{
+    line-height: 1.5;
+    text-align: justify; 
+    width: 100%;
 }
 
 footer {
