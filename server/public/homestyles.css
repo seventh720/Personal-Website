@@ -1,5 +1,5 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Georgia', sans-serif;
     margin: 0;
     padding: 0;
     background: linear-gradient(90deg, #f0f8ff 0%, #e6e6fa 100%);
@@ -46,9 +46,11 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 20vh;
+    height: 10vh;
     opacity: 0;
     transition: opacity 1s;
+    margin-top: 30px;
+    margin-bottom: 40px;
 }
 
 .nav-block {
@@ -93,12 +95,70 @@ header {
 }
 
 main {
-    padding: 2rem;
+    margin-top: 0px;
+    font-size: 20px;
     text-align: center;
     display: none;
     opacity: 0;
     transition: opacity 1.5s ease-in-out, background 1s;
     background: linear-gradient(90deg, #f0f8ff 0%, #e6e6fa 100%);
+}
+
+section{
+    margin-left: 300px;
+    margin-right: 300px;
+}
+
+section p{
+    line-height: 1.5;
+    text-align: justify;
+    max-width: 1600px; 
+    width: 100%;
+}
+
+.image-carousel {
+    width: 60%;
+    margin: 50px auto;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 10px solid white;
+    background: #e6e6e6;
+    max-width: 1200px;
+    height: 300px; 
+    margin-bottom: 100px;
+}
+
+.carousel-track {
+    display: flex;
+    width: calc(300px * 10);
+    animation: scroll 30s linear infinite; /* Adjust the time to make the scrolling slower */
+}
+
+.carousel-slide {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.carousel-slide img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.carousel-slide img:hover {
+    transform: scale(1.05);
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-300px * 10)) }
 }
 
 footer {
