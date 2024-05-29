@@ -33,9 +33,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const quizData = [
     {
-        question: '2 + 3 = ?',
-        options: ['4', '5', '6', '7'],
-        answer: 1
+        question: 'Who is the course coordinator of Web Application Development in CS programme?',
+        options: ['Jari Korhonen', 'Xiaonan Liu', 'Yuan Wen', 'Aladdin Ayesh'],
+        answer: 0
     },
     {
         question: 'This question has only one word, and followed by "please". What is it?',
@@ -43,13 +43,13 @@ document.addEventListener('DOMContentLoaded', function() {
         answer: 3
     },
     {
-        question: 'What is the capital of France?',
-        options: ['Berlin', 'London', 'Paris', 'Rome'],
-        answer: 2
+        question: 'Who was the first person to step on the moon?',
+        options: ['Neil Armstrong', 'Buzz Aldrin', 'Yuri Gagarin', 'John Glenn'],
+        answer: 0
     },
     {
-        question: 'What is the largest planet in our solar system?',
-        options: ['Earth', 'Mars', 'Jupiter', 'Saturn'],
+        question: 'How many continents are there in the world?',
+        options: ['5', '6', '7', '8'],
         answer: 2
     },
     {
@@ -68,13 +68,13 @@ document.addEventListener('DOMContentLoaded', function() {
         answer: 0
     },
     {
-        question: 'What does the acronym "NASA" stand for?',
-        options: ['National Aeronautics and Space Administration', 'New Aerospace Science Association', 'North American Space Agency', 'National Air and Space Agency'],
-        answer: 0
+        question: 'Who painted the Mona Lisa?',
+        options: ['Michelangelo', 'Leonardo da Vinci', 'Vincent van Gogh', 'Pablo Picasso'],
+        answer: 1
     },
     {
         question: 'Who wrote the novel "Harry Potter"?',
-        options: ['George Orwell', 'Aldous Huxley', 'J.k. Rowling', 'F. Scott Fitzgerald'],
+        options: ['George Orwell', 'Aldous Huxley', 'J.K. Rowling', 'F. Scott Fitzgerald'],
         answer: 2
     },
     {
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
           timeTaken: totalTime
       };
 
-      // 发送数据到服务器
+      // send data to the server
       socket.emit('submit-quiz-data', userData);
 
       socket.on('leaderboard-data', (data) => {

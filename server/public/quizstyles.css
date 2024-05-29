@@ -150,6 +150,7 @@ footer {
 #question {
   font-size: 40px;
   font-weight: bold;
+  margin-top: 20;
   margin-bottom: 10px;
 }
 
@@ -232,7 +233,7 @@ footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; 
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .option {
@@ -240,7 +241,7 @@ footer {
   background-color: #e8dfdf;
   border-radius: 10px;
   cursor: pointer;
-  padding: 20px; 
+  padding: 30px; 
   margin: 10px; 
   width: 200px;
   height: 100px;
@@ -309,7 +310,8 @@ footer {
 
 #question-indicator {
   font-size: 25px;
-  margin-bottom: 10px;
+  font-weight: 550;
+  margin-bottom: 20px;
   text-align: left;
 }
 
@@ -318,7 +320,7 @@ footer {
 }
 
 #leaderboard-container {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 
