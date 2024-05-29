@@ -8,6 +8,7 @@
     <link rel="icon" href="img/favicon.png" type="image/png">
 </head>
 <body class="light-mode">
+    <!-- Header -->
     <header>
         <div class="header-left">
             <div class="avatar">
@@ -15,6 +16,8 @@
             </div>
             <h1>Quiz</h1>
         </div>
+
+        <!-- Navigation and Mode-->
         <div class="header-buttons">
             <nav class="nav-bar">
                 <ul>
@@ -28,6 +31,8 @@
             </button>
         </div>
     </header>
+
+    <!-- Main Content -->
     <main>
         <div class="quiz-container">
             <div id="start-container">
@@ -46,6 +51,7 @@
             <div id="result-container" class="hide">
                 <div id="result"></div>
             </div>
+            <!-- Leaderboard -->            
             <div id="leaderboard-container">
                 <h1>Leaderboard</h1>
                 <table id="leaderboard-table">
@@ -60,12 +66,16 @@
                   <tbody id="leaderboard-body">
                   </tbody>
                 </table>
-              </div>
+            </div>
         </div>
     </main>
+
+    <!-- Footer -->
     <footer>
         <p>&copy; 2024 Victor. All rights reserved.</p>
     </footer>
+
+    <!-- Import js file -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="quiz.js"></script>
 </body>

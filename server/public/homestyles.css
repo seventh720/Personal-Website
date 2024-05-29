@@ -1,3 +1,4 @@
+/* Global Styles */
 body {
     font-family: 'Georgia', sans-serif;
     margin: 0;
@@ -7,6 +8,7 @@ body {
     transition: background 1s, color 1s;
 }
 
+/* Header & Footer Styles */
 header, footer {
     background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
     color: white;
@@ -42,6 +44,7 @@ header {
     object-fit: cover;
 }
 
+/* Navigation Styles */
 .nav-container {
     display: flex;
     justify-content: center;
@@ -94,6 +97,7 @@ header {
     opacity: 1;
 }
 
+/* Main Content Styles */
 main {
     margin-top: 0px;
     font-size: 20px;
@@ -104,18 +108,19 @@ main {
     background: linear-gradient(90deg, #f0f8ff 0%, #e6e6fa 100%);
 }
 
-section{
+section {
     margin-left: 300px;
     margin-right: 300px;
 }
 
-section p{
+section p {
     line-height: 1.5;
     text-align: justify;
-    max-width: 1600px; 
+    max-width: 1600px;
     width: 100%;
 }
 
+/* Image Carousel Styles */
 .image-carousel {
     width: 60%;
     margin: 50px auto;
@@ -125,7 +130,7 @@ section p{
     border: 10px solid white;
     background: #e6e6e6;
     max-width: 1200px;
-    height: 300px; 
+    height: 300px;
     margin-bottom: 100px;
 }
 
@@ -156,17 +161,20 @@ section p{
     transform: scale(1.05);
 }
 
+/* Define an animation called scroll for horizontal scrolling */
 @keyframes scroll {
     0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-300px * 9)) }
+    100% { transform: translateX(calc(-300px * 9)); }
 }
 
+/* Footer Styles */
 footer {
     position: fixed;
     bottom: 0;
     width: 100%;
 }
 
+/* Light/Dark Mode Styles */
 .light-mode {
     background: linear-gradient(90deg, #f0f8ff 0%, #e6e6fa 100%);
     color: black;
@@ -199,6 +207,7 @@ footer {
     background: linear-gradient(90deg, #121212 0%, #333333 100%);
 }
 
+/* Intro Overlay Styles */
 .intro-overlay {
     position: fixed;
     top: 0;
@@ -252,6 +261,7 @@ footer {
     background-color: #0099e6;
 }
 
+/* Toggle Button Styles */
 #overlay-toggle {
     position: absolute;
     top: 1rem;

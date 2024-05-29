@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Victor's Home Page</title>
     <link rel="stylesheet" href="homestyles.css">
     <link rel="icon" href="img/favicon.png" type="image/png">
 </head>
 <body class="light-mode">
+    <!-- Intro Overlay -->
     <div class="intro-overlay">
         <h1>Victor</h1>
         <button id="enter-site">Click to Enter</button>
@@ -15,6 +16,8 @@
             <img src="img/light.png" alt="Toggle Light/Dark Mode">
         </button>
     </div>
+
+    <!-- Header -->
     <header>
         <div class="header-left">
             <div class="avatar">
@@ -25,11 +28,15 @@
             <img src="img/light.png" alt="Toggle Light/Dark Mode">
         </button>
     </header>
+
+    <!-- Navigation -->
     <div class="nav-container">
         <a href="home.html" class="nav-block" data-description="This is Home page.">Home</a>
         <a href="about.html" class="nav-block" data-description="Learn more about me here.">About</a>
         <a href="quiz.html" class="nav-block" data-description="Take a fun quiz here!">Quiz</a>
     </div>
+
+    <!-- Main Content -->
     <main>
         <div class="section-container">
         <section>
@@ -40,6 +47,8 @@
                 on my study, but also play saxophone and take part in various activities on campus. Welcome to my website where you can learn more about me and take a fun quiz!</p>
         </section>
     </div>
+
+    <!-- Image Carousel -->
     <div class="image-carousel">
         <div class="carousel-track">
             <div class="carousel-slide"><img src="img/p1.jpg" alt="Photo 1"></div>
@@ -54,12 +63,21 @@
         </div>
     </div>
     </main>
+
+    <!-- Footer -->
     <footer>
         <p>&copy; 2024 Victor. All rights reserved.</p>
     </footer>
 
     <script>
-         document.getElementById('enter-site').addEventListener('click', function() {
+        // Show intro overlay and hide main content initially
+        document.querySelector('header').style.display = 'none';
+        document.querySelector('.nav-container').style.display = 'none';
+        document.querySelector('main').style.display = 'none';
+        document.querySelector('footer').style.display = 'none';
+
+        // Handle enter site button click
+        document.getElementById('enter-site').addEventListener('click', function() {
             document.querySelector('.intro-overlay').style.opacity = '0';
             setTimeout(function() {
                 document.querySelector('.intro-overlay').style.display = 'none';
@@ -76,23 +94,22 @@
             }, 1000);
         });
 
+        // Toggle light/dark mode for intro overlay
         document.getElementById('overlay-toggle').addEventListener('click', function() {
             var body = document.body;
             body.classList.toggle('dark-mode');
             body.classList.toggle('light-mode');
-        });
-
-        document.getElementById('overlay-toggle').addEventListener('click', function() {
-            var body = document.body;
             body.classList.toggle('overlay-dark-mode'); 
         });
 
+        // Toggle light/dark mode for main content
         document.getElementById('mode-toggle').addEventListener('click', function() {
             var body = document.body;
             body.classList.toggle('dark-mode');
             body.classList.toggle('light-mode');
         });
 
+        //Handle navigation link clicks
         document.addEventListener('DOMContentLoaded', function() {
             var links = document.querySelectorAll('.nav-container a');
 
@@ -106,7 +123,7 @@
                     }, 500);
                 });
             });
-        });                 
+        });
     </script>
 </body>
 </html>

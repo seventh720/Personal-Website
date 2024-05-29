@@ -1,3 +1,4 @@
+/* Global Styles */
 body {
     font-family: 'Georgia', sans-serif;
     margin: 0;
@@ -7,6 +8,7 @@ body {
     transition: background-color 1s, color 1s;
 }
 
+/* Header Styles */
 header {
     background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
     color: white;
@@ -53,6 +55,7 @@ header {
     height: 30px;
 }
 
+/* Navigation Bar Styles */
 .nav-bar {
     display: flex;
 }
@@ -87,6 +90,7 @@ header {
     border-radius: 4px;
 }
 
+/* Main Content Styles */
 main {
     padding: 2rem;
     text-align: center;
@@ -107,22 +111,23 @@ section {
     margin-bottom: 20px;
 }
 
-section p{
+section p {
     line-height: 1.5;
-    text-align: justify; 
+    text-align: justify;
     width: 100%;
 }
 
-details{
-    padding:10px;
+details {
+    padding: 10px;
 }
 
-summary{
+summary {
     text-align: left;
     font-size: 20px;
     font-weight: 600;
 }
 
+/* Footer Styles */
 footer {
     background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
     color: white;
@@ -133,11 +138,13 @@ footer {
     width: 100%;
 }
 
+/* Light Mode Styles */
 .light-mode {
     background: linear-gradient(90deg, #f0f8ff 0%, #e6e6fa 100%);
     color: black;
 }
 
+/* Dark Mode Styles */
 .dark-mode {
     background: linear-gradient(90deg, #121212 0%, #333333 100%);
     color: white;
@@ -152,7 +159,7 @@ footer {
     background: linear-gradient(90deg, #005f99 0%, #007bb5 100%);
 }
 
-/* Carousel styles */
+/* Carousel Styles */
 .carousel {
     width: 100%;
     max-width: 500px;
@@ -173,7 +180,7 @@ footer {
     transition: opacity 1s ease-in-out;
 }
 
-/* Video container styles */
+/* Video Container Styles */
 .video-container {
     width: 100%;
     max-width: 550px;
