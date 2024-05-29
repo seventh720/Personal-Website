@@ -10,6 +10,6 @@
   "preview": {
         "Project Index (static)": "https://{{domain}}/{{index}}",
         "Current File (static)": "https://{{domain}}/{{filepath}}",
-        "Box URL": "https://{{domain3000}}/"
+        "Box URL": "https://{{domain8080}}/"
   }
 }
