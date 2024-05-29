@@ -131,7 +131,7 @@ section p{
 
 .carousel-track {
     display: flex;
-    width: calc(300px * 10);
+    width: calc(300px * 9);
     animation: scroll 30s linear infinite; /* Adjust the time to make the scrolling slower */
 }
 
@@ -158,7 +158,7 @@ section p{
 
 @keyframes scroll {
     0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-300px * 10)) }
+    100% { transform: translateX(calc(-300px * 9)) }
 }
 
 footer {

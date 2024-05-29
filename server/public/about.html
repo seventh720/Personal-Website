@@ -73,19 +73,32 @@
                     <details>
                     <summary>Course 8: Web Application Development</summary>
                         <p>This course introduces the fundamentals of HTML, CSS and JavaScript, and teaches methods for building and deploying web applications using current web technologies and frameworks. Students will master front-end development techniques and be able to develop and deploy modern web applications, laying the foundation for a career in web development.</p>
-                        <p>On successful completion of this component, students will be able to demonstrate that they can:</p>
-                        <p>①Write and run basic web applications</p>
-                        <p>②Determine how websites and web applications should be built</p> 
-                        <p>③Use technologies that support the generation of correct Javascript code on the Node.js platform</p>
-                        <p>④Determine the appropriate platform and modules to use in their applications</p>
-                        <p>⑤Apply appropriate programming concepts to create new web applications.</p>
-                    </details>
+                        <p>On successful completion of this component, students will be able to demonstrate that they can:
+                        <br>①Write and run basic web applications
+                        <br>②Determine how websites and web applications should be built
+                        <br>③Use technologies that support the generation of correct Javascript code on the Node.js platform
+                        <br>④Determine the appropriate platform and modules to use in their applications
+                        <br>⑤Apply appropriate programming concepts to create new web applications.</p>
+                    </details>                    
                     <p>I am thrilled to be studying the above courses in-depth. They will give me a comprehensive knowledge and skills in computer science. These courses will help me understand the inner workings of computers and master digital system and processor design. They will also give me proficiency in programming in Python and Java, understanding of the whole process of software development, project management and teamwork skills. I will also learn to design and implement relational databases and use SQL for efficient queries, as well as master front-end development techniques and modern web frameworks to develop and deploy web applications. This series of courses will lay a solid foundation for my future career development. Although I have not yet grown into a professional and well-rounded person in the field of computer science, I am excited to approach this goal with continuous efforts.</p>
             </section>
             <section>
-                <h2>Interests and Hobbies</h2>
+                <h2>Interest Introduction</h2>
                     <img src="img/saxophone.gif" alt="Saxophone" Image width="220" height="220">
-                <p>I have a passion for [Your Interests]. In my free time, I enjoy [Your Hobbies].</p>
+                <p>My hobbies are playing the saxophone. At university, I'm passionate about instrumental performance. In junior high school, I passed the Amateur Grade 10, and won the Gold Medal in the South China Regional Wind Solo Competition. Before university, I had been training in the school's wind band, and I got to experience marching, indoor and outdoor orchestra performances. In junior high school, I also had the incredible opportunity to travel to the Golden Hall in Vienna to participate in the World Orchestra Competition, where I won a silver medal!</p>
+                <p>While developing my interests, I also met many mentors and friends. All of them provide supports and encouragement for me when I am faced with difficulties and confusion. Now I gradually grew into an instrumental band leader who can perform on stage without stage fright. From my first performance in my freshman year to my most recent one, I have been on stage seven times on campus! Among them, the experience of wearing the Harry Potter costume at the Chinese-British Cultural Exchange Festival is still fresh in my mind.</p>
+                <p>Below are some photos of my performances and a video of one of my recent performances. If you're interested, you can click through and take a look! Hope you'll enjoy it!.</p>
+                <div class="carousel">
+                    <img src="img/performance1.jpg" alt="Performance 1">
+                    <img src="img/performance2.jpg" alt="Performance 2" style="display: none;">
+                    <img src="img/performance3.jpg" alt="Performance 3" style="display: none;">
+                </div>
+                <div class="video-container">
+                    <video controls>
+                        <source src="video/jazz.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
             </section>
         </div>
     </main>
@@ -113,6 +126,21 @@
             var body = document.body;
             body.classList.toggle('dark-mode');
             body.classList.toggle('light-mode');
+        });
+
+        var carouselImages = document.querySelectorAll('.carousel img');
+        var currentIndex = 0;
+
+        document.querySelector('.carousel').addEventListener('mouseover', function() {
+            carouselImages[currentIndex].style.display = 'none';
+            currentIndex = (currentIndex + 1) % carouselImages.length;
+            carouselImages[currentIndex].style.display = 'block';
+        });
+
+        document.querySelector('.carousel').addEventListener('mouseout', function() {
+            carouselImages[currentIndex].style.display = 'none';
+            currentIndex = 0;
+            carouselImages[currentIndex].style.display = 'block';
         });
     </script>
 </body>
