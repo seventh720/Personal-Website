@@ -112,6 +112,16 @@ section p{
     width: 100%;
 }
 
+details{
+    padding:10px;
+}
+
+summary{
+    text-align: left;
+    font-size: 20px;
+    font-weight: 600;
+}
+
 footer {
     background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
     color: white;
