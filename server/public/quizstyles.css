@@ -131,10 +131,10 @@ footer {
   justify-content: center; 
   flex-wrap: wrap;
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 76, 255, 0.53);
   padding: 10px;
-  margin: 10px 100px 100px 100px;
+  margin: 60px 100px 100px 100px;
   max-width: 1800px; 
   max-height: 1500px; 
   overflow: auto; 
