@@ -12,21 +12,27 @@
     "rank": 2
   },
   {
-    "name": "lynn",
-    "score": 10,
-    "timeTaken": 27.281,
-    "rank": 3
-  },
-  {
-    "name": "kingsley",
+    "name": "Kingsley",
     "score": 10,
     "timeTaken": 29.106,
-    "rank": 4
+    "rank": 3
   },
   {
     "name": "Victor",
     "score": 10,
     "timeTaken": 29.366,
+    "rank": 4
+  },
+  {
+    "name": "papersheep",
+    "score": 6,
+    "timeTaken": 74.865,
     "rank": 5
+  },
+  {
+    "name": "Toomy",
+    "score": 6,
+    "timeTaken": 88.369,
+    "rank": 6
   }
 ]
