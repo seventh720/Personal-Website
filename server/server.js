@@ -47,9 +47,18 @@ io.on('connection', (socket) => {
         const { name, score, timeTaken } = data;
         const newEntry = { name, score, timeTaken };
         
-        // Add new entry to leaderboard data
-        leaderboardData.push(newEntry);
-        // Sort leaderboard data after adding the new entry
+        // Check if the name already exists in the leaderboard
+        const existingEntryIndex = leaderboardData.findIndex(entry => entry.name === name);
+        if (existingEntryIndex !== -1) {
+            // Update the existing entry
+            leaderboardData[existingEntryIndex].score = score;
+            leaderboardData[existingEntryIndex].timeTaken = timeTaken;
+        } else {
+            // Add new entry to leaderboard data
+            leaderboardData.push(newEntry);
+        }
+        
+        // Sort leaderboard data after adding/updating the entry
         leaderboardData.sort((a, b) => b.score - a.score || a.timeTaken - b.timeTaken);
         // Assign ranks to entries based on their position
         leaderboardData.forEach((entry, index) => {
