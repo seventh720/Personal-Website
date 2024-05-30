@@ -2,19 +2,31 @@
   {
     "name": "Sarah",
     "score": 10,
-    "timeTaken": 27.423,
+    "timeTaken": 23.031,
     "rank": 1
+  },
+  {
+    "name": "Emily",
+    "score": 10,
+    "timeTaken": 26.006,
+    "rank": 2
+  },
+  {
+    "name": "lynn",
+    "score": 10,
+    "timeTaken": 27.281,
+    "rank": 3
   },
   {
     "name": "kingsley",
     "score": 10,
     "timeTaken": 29.106,
-    "rank": 2
+    "rank": 4
   },
   {
     "name": "Victor",
     "score": 10,
     "timeTaken": 39.896,
-    "rank": 3
+    "rank": 5
   }
 ]
