@@ -118,11 +118,14 @@ Here are html and javascript codes for `mode-toggle`. Once you click, it will ch
 # Detailed Design of Each Page 
 Then, I'll introduce a breakdown of my design approach for each page. To provide a concise and efficient report, I'll focus on the main function in each page and descirbe clearly in details.
 
-### 1. Home Page (Root):
-![Home](repo\Home.png)
-![Home.dark](repo\Home.dark.png)
+### 1. Home Page (Root)
+![Home](repo/Home.png)
+
+![Home.dark](repo/Home.dark.png)
 
 The first page is Home Page, which is also the root page of my website. The top of the page has a header containing welcome words and mode switching buttons. The main elements of the page are the navigation bar, the brief introduction and a scrolling box for personal photos. The footer contains copyright information. The introduction includes an overview of my background, my field of study, my student work and a glimpse into my interests. The attraction points of this page are an **Overlay Page** with two diffenrent background pictures and a **scrolling Image Carousel** under the brief introduction. I implemented them using reasonable javascript and css code. 
+
+① The JavaScript listens for a click on the `'enter-site'` element, triggering a fade-out of the `'intro-overlay'` after a second, followed by a gradual fade-in of the header, navigation, main content, and footer over 50 milliseconds, seamlessly transitioning to the main page view. All of them are controlled by opacity. Click `'enter-site'` to see the turns between overlay and home page.
 ```javascript
 // Handle enter site button click
 document.getElementById('enter-site').addEventListener('click', function() {
@@ -142,10 +145,10 @@ document.getElementById('enter-site').addEventListener('click', function() {
     }, 1000);
 });
 ```
-① The JavaScript listens for a click on the `'enter-site'` element, triggering a fade-out of the `'intro-overlay'` after a second, followed by a gradual fade-in of the header, navigation, main content, and footer over 50 milliseconds, seamlessly transitioning to the main page view. All of them are controlled by opacity. Click `'enter-site'` to see the turns between overlay and home page.
 
-![Overlay](repo\Overlay.png)
-![Overlay](repo\Overlay.dark.png)
+![Overlay](repo/Overlay.png)
+
+![Overlay](repo/Overlay.dark.png)
 
 ② `@keyframes scroll` defines an animation called scroll that changes the translateX value of the transform property to achieve a horizontal scrolling effect on the image. The carousel's width adjusts to accommodate the varying number of images. `Image carousel` will be automatically played since you enter the Home Page.
 ```css
@@ -197,12 +200,14 @@ document.getElementById('enter-site').addEventListener('click', function() {
 }
 ```
 
-### 2. About Page:
-![About](repo\About.png)
-![About](repo\About.dark.png)
+### 2. About Page
+![About](repo/About.png)
+
+![About](repo/About.dark.png)
 
 The second page is an About Page that contains three main sections: personal introduction, professional introduction and interest introduction. The top of the page has a header containing a navigation bar and mode switching buttons. The main section takes a horizontal layout and contains multiple sections, each with a title, image and details. The footer contains copyright information.The shining points are **image rotation** and **video playback**. What't more, the gif images are vivid and pretty on the top of each section.
 
+① This JavaScript manages an image carousel, showing one image at a time by changing opacities. It automatically transitions every 1.5 seconds and responds to mouse interactions by starting or stopping the rotation and resetting the image display. Experience this function by moving your mouse to the picture **below the personal introduction section**.
 ```javascript
 // Function to show a specific image in the carousel
 function showImage(index) {
@@ -229,8 +234,8 @@ document.querySelector('.carousel').addEventListener('mouseout', function() {
     showImage(0);
 });
 ```
-① This JavaScript manages an image carousel, showing one image at a time by changing opacities. It automatically transitions every 1.5 seconds and responds to mouse interactions by starting or stopping the rotation and resetting the image display. Experience this function by moving your mouse to the picture **below the personal introduction section**.
 
+② Users can play, pause, and adjust the volume of the video **below the interest introduction section**. The `video controls` support all these functions in the web.
 ```html
 <div class="video-container">
     <video controls>
@@ -239,21 +244,21 @@ document.querySelector('.carousel').addEventListener('mouseout', function() {
     </video>
 </div>
 ```
-② Users can play, pause, and adjust the volume of the video **below the interest introduction section**. The video `controls` support all these functions in the web.
 
+③ Users can click titles of each section to reveal or hide additional information. This can make the webpage more **concise**.
 ```html
 <details>
 <summary>Curriculum Study</summary>
 <p>content(not show the complete here)</p>
 </details>
 ```
-③ Users can click titles of each section to reveal or hide additional information. This can make the webpage more concise.
 
-### 3. Quiz Page:
-![Quiz](repo\Quiz.png)
-![Quiz](repo\Quiz.dark.png)
+### 3. Quiz Page
+![Quiz](repo/Quiz.png)
 
-The final page is dedicated to an interactive quiz application. It's a dynamic component that requires both front-end design and back-end functionality. I implemented this using JavaScript on the Node.js platform to ensure a seamless and engaging user experience.  has a header containing a navigation bar and mode switching buttons are dispalyed at the top of the page. The main content is laid out horizontally and organized into multiple distinct parts in the question container, especially a leaderboard(significant part in the backend work). The footer contains copyright information.
+![Quiz](repo/Quiz.dark.png)
+
+The final page is dedicated to an interactive quiz application. It's a dynamic component that requires both front-end design and back-end functionality. I implemented this using JavaScript on the Node.js platform to ensure a seamless and engaging user experience. A navigation bar and mode switching buttons are dispalyed at the top of the page. The main content is laid out horizontally and organized into multiple distinct parts in the question container, especially a leaderboard(significant part in the backend work). The footer contains copyright information.
 
 ```javascript
     let currentQuestionIndex = 0; // Index of the current question
@@ -273,13 +278,13 @@ The final page is dedicated to an interactive quiz application. It's a dynamic c
     const leaderboardContainerEl = document.getElementById('leaderboard-container'); // Container to display the leaderboard
     const endQuizBtn = document.getElementById('end-quiz'); // End quiz button
 ```
-Since the whole javascriptc codes defined the quiz logic, I'll give a brief introduction here. The file ***quiz.js*** code manages a dynamic quiz application, initializing the quiz, displaying questions with a timer, handling user interactions for selecting answers, advancing through questions, and rendering a leaderboard. It tracks the user's score and time, provides immediate feedback on answers, and concludes with a summary of results and an option to restart the quiz. The application is designed to be interactive, with real-time updates and user engagement at its core.
+Since the whole JavaScript codes defined the quiz logic, I'll give a brief introduction here. The file ***quiz.js*** code manages a dynamic quiz application, initializing the quiz, displaying questions with a timer, handling user interactions for selecting answers, advancing through questions, and rendering a leaderboard. It tracks the user's score and time, provides immediate feedback on answers, and concludes with a summary of results and an option to restart the quiz. The application is designed to be interactive, with real-time updates and user engagement at its core. **Users can see the leaderboard both before and after the quiz.**
 ****
 ## Chanllege
 ### 1. Adjustment of Page Layout
-I faced challenges with maintaining the layout's neatness and responsiveness across different screen sizes. The initial design did not adapt well to window resizing, leading to layout inconsistencies and a subpar user experience.
+I faced challenges with maintaining the layout's neatness and responsiveness across different screen sizes. The initial design did not adapt well to window resizing, leading to layout inconsistencies and a unpleased user experience.
 
-To address the layout challenges, I employed CSS properties such as max-height and max-width to restrict element dimensions, ensuring they scale smoothly within their containers across various viewport sizes. Furthermore, incorporating flex-wrap in flexbox layouts allowed for item wrapping, creating a responsive design that maintains layout integrity regardless of screen dimensions. The following code snippet is an example.
+To address the layout challenges, I employed CSS properties such as `max-height` and `max-width` to restrict element dimensions, ensuring they scale smoothly within their containers across various viewport sizes. Furthermore, incorporating `flex-wrap` in flexbox layouts allowed for item wrapping, creating a responsive design that maintains layout integrity regardless of screen dimensions. The following code snippet is an example.
 ```css
 /* Quiz Container Styles */
 .quiz-container {
@@ -299,7 +304,7 @@ To address the layout challenges, I employed CSS properties such as max-height a
 ### 2. Unexpected Errors in Quiz
 I faced an issue where rapid clicking on quiz options would initiate multiple timers due to overlapping intervals, causing confusion and disrupting the quiz flow.
 
-To resolve this, I implemented a Boolean flag isProcessingOption. This flag prevents the start of a new timer while an option is being processed, ensuring that only one interval runs at a time, thereby maintaining the quiz's integrity and user experience.
+To resolve this, I implemented a Boolean flag `isProcessingOption`. This flag prevents the start of a new timer while an option is being processed, ensuring that only one interval runs at a time, thereby maintaining the quiz's integrity and user experience.
 ```javascript
 let isProcessingOption = false; // Flag to prevent multiple option selections
 // Handle option selection
