@@ -119,7 +119,8 @@ Here are html and javascript codes for `mode-toggle`. Once you click, it will ch
 Then, I'll introduce a breakdown of my design approach for each page. To provide a concise and efficient report, I'll focus on the main function in each page and descirbe clearly in details.
 
 ### 1. Home Page (Root):
-![Home](Home.png)
+![Home](repo\Home.png)
+![Home.dark](repo\Home.dark.png)
 
 The first page is Home Page, which is also the root page of my website. The top of the page has a header containing welcome words and mode switching buttons. The main elements of the page are the navigation bar, the brief introduction and a scrolling box for personal photos. The footer contains copyright information. The introduction includes an overview of my background, my field of study, my student work and a glimpse into my interests. The attraction points of this page are an **Overlay Page** with two diffenrent background pictures and a **scrolling Image Carousel** under the brief introduction. I implemented them using reasonable javascript and css code. 
 ```javascript
@@ -143,7 +144,8 @@ document.getElementById('enter-site').addEventListener('click', function() {
 ```
 ① The JavaScript listens for a click on the `'enter-site'` element, triggering a fade-out of the `'intro-overlay'` after a second, followed by a gradual fade-in of the header, navigation, main content, and footer over 50 milliseconds, seamlessly transitioning to the main page view. All of them are controlled by opacity. Click `'enter-site'` to see the turns between overlay and home page.
 
-![Overlay](Overlay.png)
+![Overlay](repo\Overlay.png)
+![Overlay](repo\Overlay.dark.png)
 
 ② `@keyframes scroll` defines an animation called scroll that changes the translateX value of the transform property to achieve a horizontal scrolling effect on the image. The carousel's width adjusts to accommodate the varying number of images. `Image carousel` will be automatically played since you enter the Home Page.
 ```css
@@ -196,7 +198,8 @@ document.getElementById('enter-site').addEventListener('click', function() {
 ```
 
 ### 2. About Page:
-![About](About.png)
+![About](repo\About.png)
+![About](repo\About.dark.png)
 
 The second page is an About Page that contains three main sections: personal introduction, professional introduction and interest introduction. The top of the page has a header containing a navigation bar and mode switching buttons. The main section takes a horizontal layout and contains multiple sections, each with a title, image and details. The footer contains copyright information.The shining points are **image rotation** and **video playback**. What't more, the gif images are vivid and pretty on the top of each section.
 
@@ -236,7 +239,7 @@ document.querySelector('.carousel').addEventListener('mouseout', function() {
     </video>
 </div>
 ```
-② Visitors can play, pause, and adjust the volume of the video **below the interest introduction section**. 
+② Users can play, pause, and adjust the volume of the video **below the interest introduction section**. The video `controls` support all these functions in the web.
 
 ```html
 <details>
@@ -244,10 +247,11 @@ document.querySelector('.carousel').addEventListener('mouseout', function() {
 <p>content(not show the complete here)</p>
 </details>
 ```
-③ Visitors can click titles of each section to reveal or hide additional information.
+③ Users can click titles of each section to reveal or hide additional information. This can make the webpage more concise.
 
 ### 3. Quiz Page:
-![Quiz](Quiz.png)
+![Quiz](repo\Quiz.png)
+![Quiz](repo\Quiz.dark.png)
 
 The final page is dedicated to an interactive quiz application. It's a dynamic component that requires both front-end design and back-end functionality. I implemented this using JavaScript on the Node.js platform to ensure a seamless and engaging user experience.  has a header containing a navigation bar and mode switching buttons are dispalyed at the top of the page. The main content is laid out horizontally and organized into multiple distinct parts in the question container, especially a leaderboard(significant part in the backend work). The footer contains copyright information.
 
@@ -311,8 +315,24 @@ function nextQuestion() {
 }
 ```
 
+At the same time, a same name will leave many records in the leaderboard to make users confused about their ranks.
+
+To fix this, I implemented by checking if an entry with the same name already exists in the leaderboard data before adding a new entry. If it exists, update its score and elapsed time, otherwise add the new entry.
+```javascript
+ // Check if the name already exists in the leaderboard
+const existingEntryIndex = leaderboardData.findIndex(entry => entry.name === name);
+if (existingEntryIndex !== -1) {
+    // Update the existing entry
+    leaderboardData[existingEntryIndex].score = score;
+    leaderboardData[existingEntryIndex].timeTaken = timeTaken;
+    } else {
+        // Add new entry to leaderboard data
+        leaderboardData.push(newEntry);
+        }
+```
+
 ### 3. Application of Socket.io
-Since I need to save and update the quiz data collected from users, I have to establish a connection between web clients and a server. Socket.io is such a tool that is used to enable real-time, bidirectional, and event-based communication.
+Since I need to save and update the quiz data collected from users, I have to establish a connection between web clients and a server. At first, I tried Express, which is a minimalist and flexible web application development framework based on Node.js. But it doesn't support real-time communication and send data to the client. So I found that it couldn't satisfy my design. After reading the official document and sildes, I realized that Socket.io is such a tool that can be used to enable real-time, bidirectional, and event-based communication. Then, I started to finish my coding using it.
 
 ```javascript
 document.addEventListener('DOMContentLoaded', function() {
@@ -342,7 +362,7 @@ document.addEventListener('DOMContentLoaded', function() {
 ```
 Upon the DOM content loading, a socket.io client is initialized. Once connected to the server, the client immediately requests the leaderboard data by emitting a `'get-leaderboard'` event. When the server responds with the leaderboard data, the client listens for the `'leaderboard-data'` event and calls a renderLeaderboard function to display it.
 
-Simultaneously, the client actively sends quiz data to the server using the `'submit-quiz-data'` event, which includes user details and performance metrics. Upon completion of the quiz, the client listens again for the `'leaderboard-data'` event to receive any updates, which could include the newly submitted scores. Upon receiving this data, it not only renders the updated leaderboard but also displays a message with the user's final score and total time taken, revealing the results and making the leaderboard visible to the user.
+Simultaneously, the client actively sends quiz data to the server using the `'submit-quiz-data'` event, which includes user details and performance metrics. Upon completion of the quiz, the client listens again for the `'leaderboard-data'` event to receive any updates, which could include the **newly** submitted scores. Upon receiving this data, it not only renders the updated leaderboard but also displays a message with the user's final score and total time taken, revealing the results and making the leaderboard visible to the user.
 ****
 ## References
 1. https://www.pexels.com/
