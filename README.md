@@ -1,11 +1,11 @@
 # Project Report of Web Application Assignment
 # 50087415 Junyi Lu
 
-## Overall design of my website
-For my website project, I aim to craft a three-page personal site that not only serves as an online portfolio but also engages vistors with an interactive element. I'll firstly introduce some common design of the whole website.
+# Overall Design of My Website
+For my website project, I aim to craft a three-page personal site that not only serves as an online portfolio but also engages users with interactive elements. I'll firstly introduce some common design of the whole website.
 
-### Head Icon and Avator
-In order to customize my personal website, I designed some small uniform elements to make it more attractive and unique.         
+### 1. Head Icon and Avatar
+In order to customize my personal website, I designed several small uniform elements to make it more attractive and unique.         
 ```html
 <link rel="icon" href="img/favicon.png" type="image/png">
 
@@ -14,8 +14,8 @@ In order to customize my personal website, I designed some small uniform element
 </div>
 ``` 
 
-### Styles of Header, Main and Footer
-At the very beginning of the website design, I had a general idea of the overall layout of the page. The styles of header, main and footer were firstly decided in the same style to ensure the consistency of the website.
+### 2. Styles of Header, Main and Footer
+At the very beginning of the website design, I had a general idea of the overall layout of the page. The styles of header, main and footer were firstly decided the same to ensure the consistency of the website.
 ``` css
 /* Global Styles */
 body {
@@ -59,9 +59,9 @@ footer {
 }
 ```
 
-### Navigation System:
-I integrated a navigation system that allows vistors to effortlessly move between them. This system will be intuitive and clearly visible on each page.
-**Home Page**
+### 3. Navigation System:
+Following the assignment requirements, I integrated a navigation system that allows vistors to effortlessly move between them. This system will be intuitive and clearly visible on each page.
+**(1)Home Page**
 ```html
 <div class="nav-container">
     <a href="home.html" class="nav-block" data-description="This is Home page.">Home</a>
@@ -70,7 +70,7 @@ I integrated a navigation system that allows vistors to effortlessly move betwee
 </div>
 ```
 
-**About Page and Quiz Page**
+**(2)About Page and Quiz Page**
 ```html
 <nav class="nav-bar">
     <ul>
@@ -81,7 +81,7 @@ I integrated a navigation system that allows vistors to effortlessly move betwee
 </nav>
 ```
 
-**Handle Clicks**
+**(3)Handle Clicks**
 ```javascript
 // Handle navigation link clicks
 links.forEach(function(link) {
@@ -95,10 +95,9 @@ links.forEach(function(link) {
     });
 });
 ```
-The navigation design for home page is a little bit special than other two pages since the layout for each page is specificly considered. Of course, all of them can funtion well. 
-This JavaScript snippet adds click event listeners to navigation links, preventing the default action, fading out the main content, and smoothly transitioning to the target page after a half-second delay, enhancing the user experience with a seamless navigation effect.
+The navigation design for home page is a little bit special than other two pages since the layout for each page is specificly considered. Of course, all of them can funtion well. This JavaScript snippet adds click event listeners to navigation links, preventing the default action, fading out the main content, and smoothly transitioning to the target page after a half-second delay, enhancing the user experience with a seamless navigation effect.
 
-### Light and Dark Mode:
+### 4. Light and Dark Mode:
 To enhance interactivity, I designed light and dark modes. Smooth switching between them is ensured by writing a button implementation logic in java script. You can click on every "mode-toggle" to change modes at upper righter corner.
 ```html
 <button id="mode-toggle">
@@ -116,11 +115,12 @@ document.getElementById('mode-toggle').addEventListener('click', function() {
 Here are html and javascript codes for `mode-toggle`. Once you click, it will change to another mode. The detailed transform effect is defined by css codes. You can click the button to experience the transition between them. 
 ****
 
-## Detailed design of each page 
+# Detailed Design of Each Page 
 Then, I'll introduce a breakdown of my design approach for each page. To provide a concise and efficient report, I'll focus on the main function in each page and descirbe clearly in details.
 
 ### 1. Home Page (Root):
 ![Home](Home.png)
+
 The first page is Home Page, which is also the root page of my website. The top of the page has a header containing welcome words and mode switching buttons. The main elements of the page are the navigation bar, the brief introduction and a scrolling box for personal photos. The footer contains copyright information. The introduction includes an overview of my background, my field of study, my student work and a glimpse into my interests. The attraction points of this page are an **Overlay Page** with two diffenrent background pictures and a **scrolling Image Carousel** under the brief introduction. I implemented them using reasonable javascript and css code. 
 ```javascript
 // Handle enter site button click
@@ -141,9 +141,11 @@ document.getElementById('enter-site').addEventListener('click', function() {
     }, 1000);
 });
 ```
-The JavaScript listens for a click on the `'enter-site'` element, triggering a fade-out of the `'intro-overlay'` after a second, followed by a gradual fade-in of the header, navigation, main content, and footer over 50 milliseconds, seamlessly transitioning to the main page view. All of them are controlled by opacity. Click `'enter-site'` to see the turns between overlay and home page.
+① The JavaScript listens for a click on the `'enter-site'` element, triggering a fade-out of the `'intro-overlay'` after a second, followed by a gradual fade-in of the header, navigation, main content, and footer over 50 milliseconds, seamlessly transitioning to the main page view. All of them are controlled by opacity. Click `'enter-site'` to see the turns between overlay and home page.
+
 ![Overlay](Overlay.png)
 
+② `@keyframes scroll` defines an animation called scroll that changes the translateX value of the transform property to achieve a horizontal scrolling effect on the image. The carousel's width adjusts to accommodate the varying number of images. `Image carousel` will be automatically played since you enter the Home Page.
 ```css
 /* Image Carousel Styles */
 .image-carousel {
@@ -192,10 +194,10 @@ The JavaScript listens for a click on the `'enter-site'` element, triggering a f
     100% { transform: translateX(calc(-300px * 9)); }
 }
 ```
-`Image carousel` will be automatically played since you enter the Home Page.
 
 ### 2. About Page:
 ![About](About.png)
+
 The second page is an About Page that contains three main sections: personal introduction, professional introduction and interest introduction. The top of the page has a header containing a navigation bar and mode switching buttons. The main section takes a horizontal layout and contains multiple sections, each with a title, image and details. The footer contains copyright information.The shining points are **image rotation** and **video playback**. What't more, the gif images are vivid and pretty on the top of each section.
 
 ```javascript
@@ -224,7 +226,7 @@ document.querySelector('.carousel').addEventListener('mouseout', function() {
     showImage(0);
 });
 ```
-This JavaScript manages an image carousel, showing one image at a time by changing opacities. It automatically transitions every 1.5 seconds and responds to mouse interactions by starting or stopping the rotation and resetting the image display. Experience this function by moving your mouse to the picture **below the personal introduction section**.
+① This JavaScript manages an image carousel, showing one image at a time by changing opacities. It automatically transitions every 1.5 seconds and responds to mouse interactions by starting or stopping the rotation and resetting the image display. Experience this function by moving your mouse to the picture **below the personal introduction section**.
 
 ```html
 <div class="video-container">
@@ -234,7 +236,7 @@ This JavaScript manages an image carousel, showing one image at a time by changi
     </video>
 </div>
 ```
-Visitors can play, pause, and adjust the volume of the video **below the interest introduction section**. 
+② Visitors can play, pause, and adjust the volume of the video **below the interest introduction section**. 
 
 ```html
 <details>
@@ -242,10 +244,11 @@ Visitors can play, pause, and adjust the volume of the video **below the interes
 <p>content(not show the complete here)</p>
 </details>
 ```
-Visitors can click titles of each section to reveal or hide additional information.
+③ Visitors can click titles of each section to reveal or hide additional information.
 
 ### 3. Quiz Page:
 ![Quiz](Quiz.png)
+
 The final page is dedicated to an interactive quiz application. It's a dynamic component that requires both front-end design and back-end functionality. I implemented this using JavaScript on the Node.js platform to ensure a seamless and engaging user experience.  has a header containing a navigation bar and mode switching buttons are dispalyed at the top of the page. The main content is laid out horizontally and organized into multiple distinct parts in the question container, especially a leaderboard(significant part in the backend work). The footer contains copyright information.
 
 ```javascript
@@ -339,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
 ```
 Upon the DOM content loading, a socket.io client is initialized. Once connected to the server, the client immediately requests the leaderboard data by emitting a `'get-leaderboard'` event. When the server responds with the leaderboard data, the client listens for the `'leaderboard-data'` event and calls a renderLeaderboard function to display it.
 
-Simultaneously, the client proactively sends quiz data to the server using the `'submit-quiz-data'` event, which includes user details and performance metrics. Upon completion of the quiz, the client listens again for the `'leaderboard-data'` event to receive any updates, which could include the newly submitted scores. Upon receiving this data, it not only renders the updated leaderboard but also displays a message with the user's final score and total time taken, revealing the results and making the leaderboard visible to the user.
+Simultaneously, the client actively sends quiz data to the server using the `'submit-quiz-data'` event, which includes user details and performance metrics. Upon completion of the quiz, the client listens again for the `'leaderboard-data'` event to receive any updates, which could include the newly submitted scores. Upon receiving this data, it not only renders the updated leaderboard but also displays a message with the user's final score and total time taken, revealing the results and making the leaderboard visible to the user.
 ****
 ## References
 1. https://www.pexels.com/
