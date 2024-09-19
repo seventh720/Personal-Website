@@ -1,5 +1,4 @@
 # Project Report of Web Application Assignment
-# 50087415 Junyi Lu
 
 # Overall Design of My Website
 For my website project, I aim to craft a three-page personal site that not only serves as an online portfolio but also engages users with interactive elements. I'll firstly introduce some common design of the whole website.
